@@ -33,16 +33,17 @@ after `mtrace()`:
 
     https://sourceware.org/git/?p=glibc.git;a=blob;f=malloc/mtrace.pl#l147 
 
-The glibc also includes `mcheck()` and its associated environment variable `MALLOC_CHECK_`
-to check that the heap is not corrupted.
+The glibc also offers the `mcheck()` function and its associated environment variable `MALLOC_CHECK_`
+to check that the heap is not corrupted:
 
     http://www.gnu.org/software/libc/manual/html_node/Heap-Consistency-Checking.html
     http://www.gnu.org/software/libc/manual/html_node/Allocation-Debugging.html
 
-Since version 4.8, the `GNU C` and `C++` compilers can add code to detect memory corruption and race 
-conditions. (The `Address Sanitizer` and `Thread Sanitizer`. There is also an instrumentation for 
-`UndefinedBehaviorSanitizer`.) The `LeakSanitizer` is an instrumentation to detect memory leak, and 
-is part of AddressSanitizer. For more information:
+Since version 4.8, the `GNU C` and `C++` compilers can optionally add code to detect memory 
+corruption and race conditions. (The `Address Sanitizer` and `Thread Sanitizer`. These 
+compilers also offer an instrumentation for `UndefinedBehaviorSanitizer`.) The `LeakSanitizer` 
+is an instrumentation to detect memory leak, and is part of AddressSanitizer. For more 
+information:
 
     https://code.google.com/p/address-sanitizer/wiki/LeakSanitizer
 
