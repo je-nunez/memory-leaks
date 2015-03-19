@@ -41,7 +41,9 @@ run_traced_program( char ** traced_programs_argv )
 		       traced_programs_argv[0], strerror( errno ));
                exit(1);
          }
-    } else {
+    } else if ( forked_pid < 0 ) {
+         /* fork itself failed */
+         perror("couldn't fork a subprocess");
     }
 }
 
@@ -55,6 +57,13 @@ main(int argc, char ** argv)
 	                                                     "free" };
 
     run_traced_program( argv + 1 );
+
+    /* TODO: parse output of latrace, taking the hologram only
+     * of the finite state machine on memory_allocation_functions[],
+     * only on the functions in this array, and ignoring all the other
+     * functions unrelated to memory allocation in the hologram of
+     * the traced process */
+
 }
 
 
