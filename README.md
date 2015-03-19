@@ -47,7 +47,11 @@ information:
 
     https://code.google.com/p/address-sanitizer/wiki/LeakSanitizer
 
-`Electric Fence` is a library for memory debugging, which has to be compiled to your programs.
+`Electric Fence` is a library for memory debugging, which has to be linked to your programs.
+
+Related also to glibc, but in another lever, it also offers `SystemTap` probes for debugging memory allocations (the `libc` SystemTap provider).
+
+    http://www.gnu.org/software/libc/manual/html_node/Internal-Probes.html
 
 `Valgrind` is an excellent system to debug memory leaks, among many other possibilities (as memory 
 corruption), but it is not easy to use it in a Production environment because of the performance 
