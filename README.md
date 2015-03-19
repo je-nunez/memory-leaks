@@ -4,12 +4,12 @@ The objective of this program is to detect memory leaks in Linux, similar to the
 
 This is a brief summary of the `leaks` program in Mac OS X:
 
-   https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/leaks.1.html 
+    https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/leaks.1.html 
 
-   SYNOPSIS
+    SYNOPSIS
          leaks pid | partial-executable-name [-nocontext] [-nostacks] [-exclude symbol] [-trace address]
 
-   DESCRIPTION
+    DESCRIPTION
          leaks identifies leaked memory -- memory that the application has allocated, but has been
          lost and cannot not be freed. Specifically, leaks examines a specified process's memory 
          for values may be pointers to malloc-allocated buffers. [...]
