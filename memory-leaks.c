@@ -7,7 +7,7 @@
 
 
 /* FIXME: take the install directory and installed version dinamically,
- * according to the system */
+ * according to the running system */
 #define LOCATION_LIB_LATRACE "/usr/lib64/libltaudit.so.0.5.11"
 
 static void
