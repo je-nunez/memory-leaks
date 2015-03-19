@@ -7,7 +7,7 @@ This is a brief summary of the `leaks` program in Mac OS X:
     https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/leaks.1.html 
 
     SYNOPSIS
-         leaks pid | partial-executable-name [-nocontext] [-nostacks] [-exclude symbol] [-trace address]
+         leaks pid | partial-exec-name [-nocontext] [-nostacks] [-exclude symbol] [-trace address]
 
     DESCRIPTION
          leaks identifies leaked memory -- memory that the application has allocated, but has been
