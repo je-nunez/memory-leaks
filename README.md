@@ -58,7 +58,7 @@ corruption), but it is not easy to use it in a Production environment because of
 penalty.
 
 Inside the Linux kernel, newer versions of it ( >= 3.19 ) offer the possibility of `Kernel Address Sanitizer`, to detect memory corruption in kernel-mode, and is
-enabled with the config option `CONFIG_KASAN = y`:
+enabled with the config option `CONFIG_KASAN = y` when built with the latest GCC compiler (see above for the `Address Sanitizer` of GCC but in user-mode):
 
     https://www.kernel.org/doc/Documentation/kasan.txt
     http://address-sanitizer.googlecode.com/svn/wiki/AddressSanitizerForKernel.wiki
