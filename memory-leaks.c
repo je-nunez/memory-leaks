@@ -26,8 +26,10 @@ setup_inotify_dir_for_new_trace_files(size_t in_size_array,
   /* Build the directory path where the liblatrace will leave the new
    * file it generates */
   int current_epoch_time = time(NULL);
-  int random_salt = rand();
   pid_t current_pid = getpid();
+
+  srand(current_pid+current_epoch_time);
+  int random_salt = rand();
 
   snprintf(directory_to_watch_for_trace_files, 
 	   sizeof directory_to_watch_for_trace_files,
@@ -109,7 +111,7 @@ main(int argc, char ** argv)
                                                        "free" };
 
   char dir_with_new_liblatrace_files[PATH_MAX];
-  int new_trace_files_inotify_fd = 
+  int inotify_fd_for_new_trace_files = 
      setup_inotify_dir_for_new_trace_files(sizeof dir_with_new_liblatrace_files,
 					   dir_with_new_liblatrace_files);
 
