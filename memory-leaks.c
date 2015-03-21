@@ -42,7 +42,7 @@ setup_inotify_dir_for_new_trace_files(size_t in_size_array,
   if (stat(directory_to_watch_for_trace_files, &stat_result)) {
     if (mkdir(directory_to_watch_for_trace_files, S_IRWXU)) {
       char err_msg[PATH_MAX+256];
-      snprintf(err_msg, sizeof err_msg, "mkdir failed for %s",
+      snprintf(err_msg, sizeof err_msg, "ERROR: mkdir failed for %s",
 	       directory_to_watch_for_trace_files);
       perror(err_msg);
       return -1;
