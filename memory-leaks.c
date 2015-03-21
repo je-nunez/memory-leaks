@@ -113,10 +113,6 @@ main(int argc, char ** argv)
      setup_inotify_dir_for_new_trace_files(sizeof dir_with_new_liblatrace_files,
 					   dir_with_new_liblatrace_files);
 
-  int i;
-  for (i=0; i<argc; i++)
-    printf("%d %s\n", i, argv[i]);
-
   run_traced_program(argv + 1);
 
   /* TODO: parse output of latrace, taking the hologram only
