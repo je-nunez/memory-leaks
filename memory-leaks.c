@@ -257,6 +257,18 @@ struct lt_fifo_msym {
         char data[0];
 };
 
+/* 
+ * To analyze this, according to the section "Discussion of LD_AUDIT"
+ * in
+ *    http://linux.die.net/man/1/latrace
+ * 
+ * where it recommends to "study the glibc/latrace source code" in
+ * order to see how it works.
+ *
+ * We don't need all existent glibc library calls, only those related to 
+ * heap memory management, in order to maintain the map of 
+ * allocated/free fragments of memory, and from this to see memory leaks.
+ *
 
 static int 
 lt_fifo_recv(struct lt_config_app *cfg, struct lt_thread *t, void *buf,
@@ -289,7 +301,7 @@ lt_fifo_recv(struct lt_config_app *cfg, struct lt_thread *t, void *buf,
 
 
 static int 
-process_fifo(struct lt_config_app *cfg, struct lt_thread *t)
+process_liblatrace_fifo_msg(struct lt_config_app *cfg, struct lt_thread *t)
 {
   static char buf[FIFO_MSG_MAXLEN];
   struct lt_fifo_mbase *mbase = (struct lt_fifo_mbase*) buf;
@@ -309,7 +321,7 @@ process_fifo(struct lt_config_app *cfg, struct lt_thread *t)
           return lt_stats_sym(cfg, t, msym);
 
   if (FIFO_MSG_TYPE_ENTRY == msym->h.type) {
-          /* Entry intro library call */
+          // Entry intro library call
           lt_out_entry(cfg->sh, &msym->h.tv, msym->h.tid,
                                            t->indent_depth,
                                            msym->data + msym->sym,
@@ -318,7 +330,7 @@ process_fifo(struct lt_config_app *cfg, struct lt_thread *t)
                                            msym->data + msym->argd);
 
   } else if (FIFO_MSG_TYPE_EXIT == msym->h.type) {
-          /* Return from library call */
+          // Return from library call 
           lt_out_exit(cfg->sh, &msym->h.tv, msym->h.tid,
                                           t->indent_depth,
                                           msym->data + msym->sym,
@@ -330,6 +342,8 @@ process_fifo(struct lt_config_app *cfg, struct lt_thread *t)
   return 0;
 }
 
+*
+*/
 
 static int
 process_homomorphic_finite_state_machine_on_traced_program(
@@ -429,15 +443,17 @@ process_homomorphic_finite_state_machine_on_traced_program(
     if (number_of_ready_fds == 0)
       continue;
 
-    /* process fifo */
+    /* process notification of liblatrace received at the fifo */
     traced_threads_stat * t;
     for(t = list_traced_threads; t ; t = t->list_forward) {
       if (FD_ISSET(t->fifo_fd, &wrk_set)) {
-        if (-1 == process_fifo(cfg, t)) {
+        /* 
+        if (-1 == process_liblatrace_fifo_msg(cfg, t)) {
           FD_CLR(t->fifo_fd, &cfg_set);
-          /* maintain state per thread */
+          // maintain state per thread 
           number_running_threads--;
         }
+        */ 
         number_of_ready_fds--;
       }
     }
