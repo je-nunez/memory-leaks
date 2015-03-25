@@ -1,5 +1,11 @@
 # memory-leaks
 
+# WIP
+
+This project is a *work in progress*. The implementation is *incomplete* and subject to change. The documentation can be inaccurate.
+
+# Description
+
 The objective of this program is to detect memory leaks in Linux, similar to the `leaks` program in Mac OS X.
 
 This is a brief summary of the `leaks` program in Mac OS X:
