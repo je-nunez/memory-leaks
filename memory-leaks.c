@@ -72,8 +72,10 @@ setup_inotify_dir_for_new_trace_files(size_t in_size_array,
   return inotify_watch_fd;
 }
 
-#define LOCATION_LIB_LATRACE "/usr/lib64/libltaudit.so.0.5.11"
-
+/* Unused, search_libltaudit_in_search_path() dynamically tries to find it:
+*
+* #define LOCATION_LIB_LATRACE "/usr/lib64/libltaudit.so.0.5.11"
+*/
 
 static int
 search_libltaudit(char * const * in_dir_tree, size_t in_size_buf, 
@@ -101,6 +103,12 @@ search_libltaudit(char * const * in_dir_tree, size_t in_size_buf,
          if (0 == access(dir_entry->fts_path, F_OK | R_OK | X_OK)) {
             strncpy(in_out_real_location_of_libltaudit, dir_entry->fts_path,
                     in_size_buf);
+            /* TODO: check that not only this file is in the library path and
+             * is named `<expand-macro(NAME_LIB_LATRACE)>`, and as Read(load)
+             * and execute permission (so it does seem to be a .so library
+             * but -TODO- also check that is the .so library adequate to the
+             * runtime architecture -64 vs 32 bits-, ie., here inside, similar 
+             * to `objdump` but without forking/executing `objdump` */
             libltaudit_found = 1;
             break;
          }
@@ -116,7 +124,8 @@ static int
 search_libltaudit_in_search_path(size_t in_size_buf, 
                                  char * in_out_real_location_of_libltaudit)
 {
-  char * standard_library_locations[] = { "/usr/lib64", "/usr/lib", NULL };
+  char * standard_library_locations[] = { "/lib64", "/lib", "/usr/lib64", 
+					  "/usr/lib", NULL };
 
   /* Try to find the libltaudit in the LD_LIBRARY_PATH override-search,
    * since this is what Linux does, using this override first */
