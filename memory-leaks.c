@@ -109,6 +109,7 @@ search_libltaudit(char * const * in_dir_tree, size_t in_size_buf,
              * but -TODO- also check that is the .so library adequate to the
              * runtime architecture -64 vs 32 bits-, ie., here inside, similar 
              * to `objdump` but without forking/executing `objdump` */
+            // long int architecture_32_or_64 = sysconf( _SC_LONG_BIT );
             libltaudit_found = 1;
             break;
          }
