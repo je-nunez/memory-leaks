@@ -16,7 +16,9 @@ that also uses the same underlying technology, the `LibC RTLD Run-time Audit`:
 
     http://man7.org/linux/man-pages/man7/rtld-audit.7.html
 
-There is a difference between both projects, and is that `a_gnu_libc_interceptor_via_rtld_audit` does a general common analysis of each library call `independently of each other` (profiling each), but this project tries to interpret logically the `inter-relationship between different calls` (eg., to interpret the address of the heap between `malloc()`s and `free()`s), so their use is different. This project will be resumed in some time, since it receives like a hologram between the calls and uses it to build a finite-state machine: this technique may be used for the relationship between other library calls which are related, not only those of heap-memory allocation.
+There is a difference between both projects, and is that `a_gnu_libc_interceptor_via_rtld_audit` does a general common analysis of each library call `independently of each other` (profiling each), but this project tries to interpret logically the `inter-relationship between different calls` (eg., to interpret the address of the heap between `malloc()`s and `free()`s), so their use is different. 
+
+This project will be resumed in some time, since it receives like a hologram between the calls and uses it to build a finite-state machine of the intermediate states of the related calls: this technique may be used for the relationship between other library calls which are related, not only those of heap-memory allocation.
 
 # Description
 
